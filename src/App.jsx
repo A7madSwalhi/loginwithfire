@@ -23,19 +23,35 @@ function App() {
     },
     {
       path: "/OverviewPage",
-      element: <FOverviewPage />,
+      element: (
+        <RequireAdminAuth>
+          <FOverviewPage />,
+        </RequireAdminAuth>
+      ),
     },
     {
       path: "/Courses",
-      element: <Courses />,
+      element: (
+        <RequireAdminAuth>
+          <Courses />,
+        </RequireAdminAuth>
+      ),
     },
     {
       path: "/UsersPage",
-      element: <FUsers />,
+      element: (
+        <RequireAdminAuth>
+          <FUsers />,
+        </RequireAdminAuth>
+      ),
     },
     {
       path: "/Subscriptions",
-      element: <Subscriptions />,
+      element: (
+        <RequireAdminAuth>
+          <Subscriptions />,
+        </RequireAdminAuth>
+      ),
     },
     {
       path: "/user",

@@ -65,7 +65,7 @@ function Login() {
         if (docSnap.data().role == "user") {
           navigate("/user");
         } else if (docSnap.data().role == "admin") {
-          navigate("/admin");
+          navigate("/OverviewPage");
         }
       })
       .catch((error) => {

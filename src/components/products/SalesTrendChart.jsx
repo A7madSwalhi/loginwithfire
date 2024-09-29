@@ -1,43 +1,54 @@
 import { motion } from "framer-motion";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
-const salesData = [
-	{ month: "Jan", sales: 4000 },
-	{ month: "Feb", sales: 3000 },
-	{ month: "Mar", sales: 5000 },
-	{ month: "Apr", sales: 4500 },
-	{ month: "May", sales: 6000 },
-	{ month: "Jun", sales: 5500 },
-];
+const CourseCard = ({ course }) => {
+  return (
+    <motion.div
+      className="relative bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700 flex flex-col items-center text-white"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3 }}
+    >
+      {/* Course Image */}
+      <motion.img
+        src={course.course_image}
+        alt={course.course_name}
+        className="rounded-lg mb-4 w-full h-40 object-cover relative z-0"
+        initial={{ scale: 0.9 }}
+        animate={{ scale: 1 }}
+        transition={{ type: "spring", stiffness: 150 }}
+      />
 
-const SalesTrendChart = () => {
-	return (
-		<motion.div
-			className='bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700'
-			initial={{ opacity: 0, y: 20 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ delay: 0.3 }}
-		>
-			<h2 className='text-xl font-semibold text-gray-100 mb-4'>Sales Trend</h2>
-			<div style={{ width: "100%", height: 300 }}>
-				<ResponsiveContainer>
-					<LineChart data={salesData}>
-						<CartesianGrid strokeDasharray='3 3' stroke='#374151' />
-						<XAxis dataKey='month' stroke='#9CA3AF' />
-						<YAxis stroke='#9CA3AF' />
-						<Tooltip
-							contentStyle={{
-								backgroundColor: "rgba(31, 41, 55, 0.8)",
-								borderColor: "#4B5563",
-							}}
-							itemStyle={{ color: "#E5E7EB" }}
-						/>
-						<Legend />
-						<Line type='monotone' dataKey='sales' stroke='#8B5CF6' strokeWidth={2} />
-					</LineChart>
-				</ResponsiveContainer>
-			</div>
-		</motion.div>
-	);
+      {/* Course Name */}
+      <h2 className="text-xl font-semibold mb-2">{course.course_name}</h2>
+
+      {/* Course Teacher */}
+      <h3 className="text-md mb-2 text-gray-300">
+        Taught by: {course.course_teacher}
+      </h3>
+
+      {/* Course Description */}
+      <p className="text-sm mb-4 text-gray-400 text-center">
+        {course.course_description}
+      </p>
+
+      {/* Course Details */}
+      <div className="flex justify-between w-full text-sm text-gray-400">
+        <div>
+          <strong>Cost:</strong> ${course.total_cost}
+        </div>
+        <div>
+          <strong>Duration:</strong> {course.course_duration}
+        </div>
+      </div>
+
+      {/* Hover Effect */}
+      <motion.div
+        className="absolute inset-0 bg-black bg-opacity-10 rounded-xl opacity-0 hover:opacity-100 transition-opacity"
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+      />
+    </motion.div>
+  );
 };
-export default SalesTrendChart;
+
+export default CourseCard;
