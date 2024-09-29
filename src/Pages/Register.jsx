@@ -6,8 +6,25 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { useEffect } from "react";
 
 function Register() {
+  useEffect(() => {
+    // Create a new <link> element for Bootstrap
+    const bootstrapLink = document.createElement("link");
+    bootstrapLink.rel = "stylesheet";
+    bootstrapLink.href =
+      "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
+
+    // Append the Bootstrap <link> tag to the <head> of the document
+    document.head.appendChild(bootstrapLink);
+
+    // Clean up function to remove Bootstrap styles when the component is unmounted
+    return () => {
+      document.head.removeChild(bootstrapLink);
+    };
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -31,7 +48,7 @@ function Register() {
         setDoc(doc(db, "users", user.uid), {
           userid: user.uid,
           email: user.email,
-          role:"user"
+          role: "user",
         });
       })
       .then(() => {

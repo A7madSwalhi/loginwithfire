@@ -8,13 +8,34 @@ import ForgetPassword from "./Pages/ForgetPassword";
 import RequireAdminAuth from "./components/auth/RequireAdminAuth";
 import RequireUserAuth from "./components/auth/RequireUserAuth";
 import RedirectIfLoggedIn from "./components/auth/RedirectIfLoggedIn";
+
 import "./App.css";
+import FOverviewPage from "./Pages/dashboard/FOverviewPage";
+import Courses from "./Pages/dashboard/Courses";
+import FUsers from "./Pages/dashboard/FUsers";
+import Subscriptions from "./Pages/dashboard/Subscriptions";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Home />,
+    },
+    {
+      path: "/OverviewPage",
+      element: <FOverviewPage />,
+    },
+    {
+      path: "/Courses",
+      element: <Courses />,
+    },
+    {
+      path: "/UsersPage",
+      element: <FUsers />,
+    },
+    {
+      path: "/Subscriptions",
+      element: <Subscriptions />,
     },
     {
       path: "/user",
